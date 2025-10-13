@@ -17,3 +17,6 @@ Thumbs.db
 # Inputs / Outputs
 inputs/
 outputs/
+
+# Other
+audio.mp3
