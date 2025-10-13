@@ -2,6 +2,7 @@ import whisper
 import os
 
 AUDIO = 'audio path'
+VIDEO = 'video path'
 MODEL = 'small'
 FONT = 'font path'
 
@@ -20,4 +21,8 @@ def transcribe_audio(audio, model):
 
 def create_subtitles():
     pass
+
+def print_subtitles():
+    pass
+
 
