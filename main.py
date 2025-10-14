@@ -1,5 +1,5 @@
 import whisper
-#import os
+import subprocess
 
 VIDEO = 'inputs/video.mp4'
 MODEL = 'turbo'
@@ -25,6 +25,19 @@ def create_subtitles(result):
             f.write(f'{format_time(seg["start"])} --> {format_time(seg["end"])}\n')
             f.write(f'{seg["text"]}\n\n')
 
-def print_subtitles():
-    pass
+def print_subtitles(input_file:str, output_file:str, subtitle_file:str):
+    cmd = [
+    "ffmpeg", "-y",
+    "-i", input_file,
+    "-vf", f"subtitles={subtitle_file}",
+    "-c:v", "libx264", "-crf", "18", "-preset", "medium",
+    "-c:a", "copy",
+    output_file,
+    ]
+    subprocess.run(cmd, check=True)
+
+transcribed_audio = transcribe_audio(video=VIDEO, model=MODEL)
+subtitles = create_subtitles(result=transcribed_audio)
+print_subtitles(input_file=VIDEO, output_file="out.mp4", subtitle_file="output.srt")
+
 
