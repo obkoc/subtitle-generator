@@ -2,7 +2,7 @@ import whisper
 #import os
 
 VIDEO = 'inputs/video.mp4'
-MODEL = 'tiny'
+MODEL = 'turbo'
 #FONT = 'font path'
 
 def extract_audio():
@@ -21,11 +21,12 @@ def format_time(unformatted_time:float):
     return(f'{h:02}:{m:02}:{s:02},{ms:03}')
 
 def create_subtitles(result):
-    for i in result['segments']:
-        print(f'''Text: {i["text"]},
-              Start: {i["start"]},
-              End: {i['end']}
-              Type: {type(i['end'])}''') # pyright: ignore
+    segments = result['segments']
+    with open("output.srt", "w", encoding="utf-8") as f:
+        for n, seg in enumerate(segments, start=1):
+            f.write(f'{n}\n')
+            f.write(f'{format_time(seg["start"])} --> {format_time(seg["end"])}\n')
+            f.write(f'{seg["text"]}\n\n')
 
 def print_subtitles():
     pass
