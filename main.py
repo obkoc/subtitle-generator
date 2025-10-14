@@ -5,9 +5,9 @@ VIDEO = 'inputs/video.mp4'
 MODEL = 'turbo'
 #FONT = 'font path'
 
-def transcribe_audio(audio, model):
+def transcribe_audio(video, model):
     model = whisper.load_model(model)
-    result = model.transcribe(audio)
+    result = model.transcribe(video)
     return result
 
 def format_time(unformatted_time:float):
