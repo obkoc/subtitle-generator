@@ -5,9 +5,6 @@ VIDEO = 'inputs/video.mp4'
 MODEL = 'turbo'
 #FONT = 'font path'
 
-def extract_audio():
-    pass
-
 def transcribe_audio(audio, model):
     model = whisper.load_model(model)
     result = model.transcribe(audio)
