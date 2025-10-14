@@ -14,11 +14,11 @@ def transcribe_audio(audio, model):
     return result
 
 def format_time(unformatted_time:float):
-    time_ms = int(unformatted_time * 1000)
-    hours , remainder = divmod(time_ms, 3600000)
-    minutes, remainder = divmod(remainder, 60000)
-    seconds , miliseconds = divmod(remainder, 1000)
-    return(f'{hours:02}:{minutes:02}:{seconds:02},{miliseconds:03}')
+    ms = int(unformatted_time * 1000)
+    h , rem = divmod(ms, 3600000)
+    m, rem = divmod(rem, 60000)
+    s , ms = divmod(rem, 1000)
+    return(f'{h:02}:{m:02}:{s:02},{ms:03}')
 
 def create_subtitles(result):
     for i in result['segments']:
